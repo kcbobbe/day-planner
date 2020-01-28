@@ -1,0 +1,5 @@
+.planner-text-area {
+  min-width: 100%;
+  resize: vertical;
+  border:none;
+}
