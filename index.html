@@ -18,12 +18,26 @@
 
   
     <nav class="navbar navbar-dark bg-dark">
-      <span class="navbar-brand mb-0 h1">Work Day Schedule!</span>
-      <span class="navbar-text" id="todaysDate"></span>
+      <span class="navbar-brand mb-0 h1"><i class="far fa-calendar-alt"></i>  Daily Planner</span>
+      <span class="navbar-text"></span>
+      <br>
+      <span class="navbar-text">
+        <span id="onThisDayYear"></span>
+        <span class="navbar-text" id="onThisDayText"></span>
+      </span>
+      
     </nav>
 
-  <div class="container mt-5">
+  <div class="container mt-5 planner-table">
     <table class="table table-bordered">
+      <thead class="thead-dark">
+        <tr>
+          <th colspan="3" class="table-header">
+            <h1 id="todaysDate"></h1>
+          </th>
+        </tr>
+      </thead>
+      
       <tbody id="tableBody">
         <!-- <tr>
           <td>

@@ -1,5 +1,35 @@
+#onThisDayYear{
+  font-weight: bold;
+}
+
 .planner-text-area {
-  min-width: 100%;
   resize: vertical;
   border:none;
+  background-color: rgba(256, 256, 256, 0);
+  margin:0;
+  padding:0;
+  width: 100%;
+  height: 100%;
+}
+
+.time-col{
+  text-align:center;
+  font-weight:bold;
+  size:1.2em;
+}
+
+
+.text-area-col{
+  margin:0;
+  padding:0;
+}
+
+.save-btn-col{
+  text-align:center;
+}
+
+
+.table-header{
+  text-align:center;
+
 }
