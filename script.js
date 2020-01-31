@@ -18,8 +18,19 @@ $.ajax({
   $("#onThisDayText").text(response.text)
 })
 
-$("#todaysDate").text(moment().format('MMMM Do, YYYY'))
-console.log('hi')
+var today = (moment().format('MMMM Do, YYYY'))
+
+if (!localStorage.getItem("today")){
+  localStorage.setItem("today",today);
+}
+
+if (localStorage.getItem("today") !== today ){
+  localStorage.clear()
+  localStorage.setItem("today", today)
+}
+
+$("#todaysDate").text((moment().format('MMMM Do, YYYY')))
+$("#currentTime").text((moment().format('h:mma')))
 
 
 // var plannerTable = [
@@ -28,7 +39,7 @@ console.log('hi')
 
 if (!localStorage.getItem("plannerTable")){
   var plannerTable = [
-    {hour: "9:00 AM", plan: ""},{hour: "10:00 AM", plan: ""},{hour: "11:00 AM", plan: ""},{hour: "12:00PM", plan: ""},{hour: "1:00 PM", plan : ""},{hour: "2:00 PM", plan: ""},{hour: "3:00 PM", plan: ""},{hour: "4:00 PM", plan: ""},{hour: "5:00 PM", plan: ""}
+    {hour: "9:00am", plan: ""},{hour: "10:00am", plan: ""},{hour: "11:00am", plan: ""},{hour: "12:00pm", plan: ""},{hour: "1:00pm", plan : ""},{hour: "2:00pm", plan: ""},{hour: "3:00pm", plan: ""},{hour: "4:00pm", plan: ""},{hour: "5:00pm", plan: ""}
   ]
 } else{
   var plannerTable = JSON.parse(localStorage.getItem("plannerTable"))
@@ -63,7 +74,7 @@ function createPlannerTable(){
     var newIcon = $("<i>")
     newIcon.attr('class', 'fas fa-save save-icon' )
     newButton.append(newIcon);
-    newButton.attr('class','save-button btn btn-dark')
+    newButton.attr('class','save-button  btn-lg btn-dark')
     newButton.attr('data-id', i)
     newtd3.append(newButton);
     newtr.append(newtd3);
@@ -76,11 +87,14 @@ createPlannerTable()
 
 function compareTimes(i, row){
   if (parseInt((moment(plannerTable[i].hour, "LT").format("H"))) === parseInt(moment().format('H'))){
-    row.attr('style','background-color:#ccccee')
+    row.attr('class', 'active-row')
   } else if (parseInt((moment(plannerTable[i].hour, "LT").format("H"))) < parseInt(moment().format('H'))){
-    row.attr('style','background-color:#eeeeee; opacity:.4')
+    row.attr('class', 'past-row')
+  } else if (parseInt((moment(plannerTable[i].hour, "LT").format("H"))) > parseInt(moment().format('H'))){
+    row.attr('class', 'future-row')
   }
 }
+
 
 $(".save-button").on("click", function(e){
   var j = ($(this).attr('data-id'));
