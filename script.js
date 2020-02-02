@@ -13,7 +13,6 @@ $.ajax({
   url: queryURL,
   method: "GET",
 }).then(function(response) {
-  console.log(response);
   $("#onThisDayYear").text("On this day in " + response.year + " : ")
   $("#onThisDayText").text(response.text)
 })
@@ -99,9 +98,7 @@ function compareTimes(i, row){
 $(".save-button").on("click", function(e){
   var j = ($(this).attr('data-id'));
   var matchingTextArea = ($(("#textArea" + j)))
-  console.log(matchingTextArea.val())
   plannerTable[j].plan = (matchingTextArea.val());
-  console.log(plannerTable)
   localStorage.setItem("plannerTable",JSON.stringify(plannerTable))
 })
 
